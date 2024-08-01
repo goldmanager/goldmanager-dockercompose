@@ -18,7 +18,7 @@ services:
       retries: 10
 
   goldmanager:
-    image: docker.io/fg1212/goldmanager:latest
+    image: docker.io/fg1212/goldmanager:latestsnapshot
     container_name: goldmanager
     restart: unless-stopped
     environment:
@@ -27,22 +27,10 @@ services:
       SPRING_DATASOURCE_PASSWORD: mypassword
       APP_DEFAULT_USER: admin
       APP_DEFAULT_PASSWORD: adminpassword!
-      ALLOWEDORIGINS: http://localhost:9090
     ports:
       - "8080:8080"
     depends_on:
       - db
-
-  goldmanagerui:
-    image: docker.io/fg1212/goldmanager-ui:latest
-    container_name: goldmanager-ui
-    restart: unless-stopped
-    environment:
-      VUE_APP_API_BASE_URL: http://localhost:8080
-    ports:
-      - "9090:8080"
-    depends_on:
-      - goldmanager
 
 volumes:
   db-data:
