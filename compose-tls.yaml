@@ -1,0 +1,43 @@
+services:
+  db:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 60s
+      timeout: 5s
+      retries: 10
+
+  goldmanager:
+    image: docker.io/fg1212/goldmanager:latest
+    container_name: goldmanager
+    restart: unless-stopped
+    environment:
+      SERVER_SSL_KEY_STORE: /etc/ssl/certs/tls.pfx #Your PKCS12 keystore file location inside the container (see also volumes)
+      SERVER_SSL_KEY_STORE_PASSWORD: mykeystorepassword #Replace with your keystore password
+      SERVER_SSL_KEY_STORE_TYPE: PKCS12
+      SERVER_SSL_KEY_ALIAS: my-alias #Replace with your ssl key alias
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/mydatabase
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: mypassword
+      APP_DEFAULT_USER: admin
+      APP_DEFAULT_PASSWORD: admin1password!
+      SERVER_PORT: 8443
+    ports:
+      - "8443:8443"
+    depends_on:
+      - db
+    volumes:
+      - ./tls.pfx:/etc/ssl/certs/tls.pfx #asuming your PKCS12 keystore is named tls.pfx and located in the same directory as this yaml-file
+
+volumes:
+  db-data:
+
