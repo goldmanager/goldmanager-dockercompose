@@ -15,6 +15,17 @@ The default user name is admin, default password is 'admin1password!'.<br>
 Please change the password after first login and/or create a new user and disable or delete user admin!<br>
 <br>
 To enable TLS, you can refer to the example in "compose-tls.yaml", you will need to provide a PKCS12 keystore file which is named in the example as "tls.pfx".
-
+# Updateing prices via REST API
+Starting from version 0.9.0 goldmanager, supports the restapi provided by https://metalpriceapi.com for automatically updating metal prices.<br>
+If enabled, goldmanager will also update the configured pricehistory range (METALPRICECOLLECTOR_FETCHHISTORYDAYS) on start up.<br>
+For usage, you will need to obtain an api key from this provider and to configure the image environment accordingly.<br>
+See the file compose-tls-priceupdate.yml as example configuration.<br>
+## Relevant environment variables with examples:
+METALPRICECOLLECTOR_APIKEY: apiKey #API key from metalpriceapi.com <br>
+METALPRICECOLLECTOR_ENABLED: true #Enable automatic price update (default false)<br>
+METALPRICECOLLECTOR_CURRENCY: USD #Currency see metalpriceapi.com currency symbols<br>
+METALPRICECOLLECTOR_METALMAPPINGS: Gold=XAU,Silver=XAG #comma separated mapping from goldmanager metalname=rest api symbols<br>
+METALPRICECOLLECTOR_FETCHHISTORYDAYS: 5  #number of days to fetch price history on startup (Note this uses 1 api call per mapped metal!), set to 0 to disable. This example causes goldmanager to update price history from the last 5 days after startup.<br>
+METALPRICECOLLECTOR_FETCHINTERVALMINUTES: 60 #Interval in minutes to update prices: In this example the mapped prices will be updated every 60 minutes<br>
 
 
