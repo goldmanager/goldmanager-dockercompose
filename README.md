@@ -24,8 +24,12 @@ See the file compose-tls-priceupdate.yml as example configuration.<br>
 METALPRICECOLLECTOR_APIKEY: apiKey #API key from metalpriceapi.com <br>
 METALPRICECOLLECTOR_ENABLED: true #Enable automatic price update (default false)<br>
 METALPRICECOLLECTOR_CURRENCY: USD #Currency see metalpriceapi.com currency symbols<br>
-METALPRICECOLLECTOR_METALMAPPINGS: Gold=XAU,Silver=XAG #comma separated mapping from goldmanager metalname=rest api symbols<br>
-METALPRICECOLLECTOR_FETCHHISTORYDAYS: 5  #number of days to fetch price history on startup (Note this uses 1 api call per mapped metal!), set to 0 to disable. This example causes goldmanager to update price history from the last 5 days after startup.<br>
+METALPRICECOLLECTOR_METALMAPPINGS: Gold=XAU,Silver=XAG #comma separated mapping from goldmanager metalname=rest api symbols. This Example maps the metal Gold to the rest api symbol XAU andSilver to XAG. (Please consult metalpriceapi.com's documentation for more information on metal symbols)<br>
+METALPRICECOLLECTOR_FETCHHISTORYDAYS: 5  #maximum number of days to fetch price history on startup (Note this uses 1 api call per mapped metal!), set to 0 to disable.
+If the current price for a mapped metal is newer then the configured number of days, only prices newer then the last known price will be fetched.<br>
+Maximum valid value is 365 days.<br>
+This example causes goldmanager to update price history from the last 5 days after startup if the last known metal price (for gold and/or silver) is older than 5 days and the difference is bigger than 1 day.
+<br>
 METALPRICECOLLECTOR_FETCHINTERVALMINUTES: 60 #Interval in minutes to update prices: In this example the mapped prices will be updated every 60 minutes<br>
 
 
