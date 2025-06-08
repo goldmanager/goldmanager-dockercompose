@@ -7,7 +7,7 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
+      MYSQL_PASSWORD: myPassw0rd12356!
     volumes:
       - db-data:/var/lib/mysql
     healthcheck:
@@ -29,7 +29,7 @@ services:
       SPRING_DATASOURCE_USERNAME: myuser
       SPRING_DATASOURCE_PASSWORD: mypassword
       APP_DEFAULT_USER: admin
-      APP_DEFAULT_PASSWORD: admin1password!
+      APP_DEFAULT_PASSWORD: admin1Password!
       SERVER_PORT: 8443
     ports:
       - "8443:8443"

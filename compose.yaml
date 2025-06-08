@@ -25,7 +25,7 @@ services:
       SPRING_DATASOURCE_USERNAME: myuser
       SPRING_DATASOURCE_PASSWORD: mypassword
       APP_DEFAULT_USER: admin
-      APP_DEFAULT_PASSWORD: admin1password!
+      APP_DEFAULT_PASSWORD: admin1Password!
     ports:
       - "8080:8080"
     depends_on:

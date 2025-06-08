@@ -11,7 +11,7 @@ To update started instances run <br>
 <i>docker compose down</i><br>
 <i>docker compose up -d</i><br>
 # Security aspects
-The default user name is admin, default password is 'admin1password!'.<br>
+The default user name is admin, default password is 'admin1Password!'.<br>
 Please change the password after first login and/or create a new user and disable or delete user admin!<br>
 <br>
 To enable TLS, you can refer to the example in "compose-tls.yaml", you will need to provide a PKCS12 keystore file which is named in the example as "tls.pfx".

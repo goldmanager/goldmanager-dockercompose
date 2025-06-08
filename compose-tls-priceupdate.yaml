@@ -29,7 +29,7 @@ services:
       SPRING_DATASOURCE_USERNAME: myuser
       SPRING_DATASOURCE_PASSWORD: mypassword
       APP_DEFAULT_USER: admin
-      APP_DEFAULT_PASSWORD: admin1password!
+      APP_DEFAULT_PASSWORD: admin1Password!
       SERVER_PORT: 8443
       METALPRICECOLLECTOR_APIKEY: apiKey #API key from metalpriceapi.com
       METALPRICECOLLECTOR_ENABLED: true #Enable automatic price update
